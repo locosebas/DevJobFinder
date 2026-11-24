@@ -42,8 +42,13 @@ pueda reconocer una vacante puntual.
    python3 estadisticas.py resumen
    ```
 
-4. **Envíalo al repo original** con un pull request que solo toque
-   `aportes/<tu-alias>.json` y `README.md`. Para actualizarlo más adelante,
+4. **Envíalo a [locosebas/DevJobFinder](https://github.com/locosebas/DevJobFinder)**
+   con un pull request desde tu fork que solo toque
+   `busqueda-empleo/estadisticas/aportes/<tu-alias>.json` y
+   `busqueda-empleo/estadisticas/README.md`. Hazlo desde una rama aparte
+   (p. ej. `aporte/<tu-alias>`) que solo tenga esos dos archivos, no desde
+   la rama donde guardas tu perfil y tu avance. Un chequeo automático
+   valida el aporte y el mantenedor lo aprueba. Para actualizarlo más adelante,
    repite el paso 3 con el **mismo alias**: tu archivo se reemplaza, no se
    duplica.
 

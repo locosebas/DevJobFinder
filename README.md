@@ -6,7 +6,8 @@ presentaciones de entrevista y herramientas para la búsqueda de empleo.
 
 ## Cómo empezar
 
-1. Haz un fork o copia de este repo y ábrelo con Claude Code.
+1. Haz un **fork** de [locosebas/DevJobFinder](https://github.com/locosebas/DevJobFinder) y ábrelo con Claude Code.
+   Tu fork es tuyo: ahí guardas tu perfil y tu avance.
 2. Escribe cualquier cosa (ej. "hola"): como `perfil/perfil.md` está en
    **PENDIENTE**, Claude te guiará por el onboarding (`perfil/onboarding.md`):
    tu perfil, tu objetivo, tu experiencia, un examen diagnóstico y la
@@ -26,6 +27,16 @@ presentaciones de entrevista y herramientas para la búsqueda de empleo.
 | `presentaciones/` | Índice de presentaciones |
 | `busqueda-empleo/` | Scripts para postular por lotes, registro de postulaciones y **estadística colectiva anónima** (`estadisticas/`): tasas de respuesta reales por portal y tipo de rol, a la que puedes sumar tus números |
 | `herramientas/` | `personalizar.py`: pone tus datos en los marcadores del repo |
+
+## Aportar a la estadística colectiva
+
+Los aportes a `busqueda-empleo/estadisticas/` se envían por **pull request a
+[locosebas/DevJobFinder](https://github.com/locosebas/DevJobFinder)** (no a tu
+fork). Un PR de aporte solo puede tocar `busqueda-empleo/estadisticas/aportes/<tu-alias>.json`
+y `busqueda-empleo/estadisticas/README.md`; un chequeo automático lo verifica y
+el mantenedor lo aprueba. Ver [`COMO-APORTAR.md`](busqueda-empleo/estadisticas/COMO-APORTAR.md).
+
+Tu perfil, tu progreso y tus exámenes **no** se envían: se quedan en tu fork.
 
 ## Sobre los marcadores
 

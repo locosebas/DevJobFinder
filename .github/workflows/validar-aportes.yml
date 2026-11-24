@@ -1,0 +1,29 @@
+name: Validar aportes a la estadística
+
+on:
+  pull_request:
+    paths:
+      - "busqueda-empleo/estadisticas/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validar archivos del pull request
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git diff --name-only "$BASE_SHA" "$HEAD_SHA" > cambiados.txt
+          cat cambiados.txt
+          python3 busqueda-empleo/estadisticas/validar_aporte.py $(cat cambiados.txt)
