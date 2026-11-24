@@ -1,0 +1,8 @@
+{
+  "_nota": "Copia este archivo como datos_privados.json en tu carpeta LOCAL de ejecución (nunca en el repo) y pon tus valores.",
+  "compuertas": {
+    "cop_por_usd": 4000,
+    "presencial_min_cop": 15000000,
+    "hibrido_min_cop": 9000000
+  }
+}

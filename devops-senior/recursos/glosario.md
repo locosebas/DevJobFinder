@@ -1,0 +1,121 @@
+# Glosario rápido
+
+Términos que aparecen seguido en los temas de este repo. Referencia rápida,
+no reemplaza leer el tema completo. Incluye el equivalente en las tres nubes
+cuando aplica — ver también las tablas de equivalencias dentro de cada tema.
+
+| Término (Azure) | Equivalente AWS | Equivalente GCP | Definición corta |
+|---|---|---|---|
+| ACA (Container Apps) | Fargate (sobre ECS/EKS) | Cloud Run | Serverless containers |
+| ACR | ECR | Artifact Registry | Registro privado de imágenes de contenedor |
+| Managed Identity | IAM Role | Service Account | Identidad gestionada para un recurso, sin credenciales manuales |
+| RBAC (Azure) | IAM Policies | Cloud IAM | Autorización basada en roles/policies sobre un scope de recursos |
+| Private Endpoint | VPC Endpoint / PrivateLink | Private Service Connect | Acceso privado a un servicio PaaS/gestionado sin salir a internet |
+| NSG | Security Group / NACL | Firewall Rules | Reglas de firewall a nivel de red |
+| VNet | VPC | VPC (global) | Red virtual privada |
+| Key Vault | Secrets Manager | Secret Manager | Gestión de secretos/keys/certificados |
+| Cosmos DB | DynamoDB | Firestore / Bigtable | Base de datos NoSQL gestionada |
+| RU (Request Unit) | RCU/WCU | — (facturado por operación) | Unidad de throughput en Cosmos DB / DynamoDB |
+| Azure Monitor | CloudWatch | Cloud Monitoring | Paraguas de métricas/logs/alertas |
+| Application Insights | AWS X-Ray | Cloud Trace | APM / tracing distribuido |
+| KQL | CloudWatch Logs Insights QL | Cloud Logging query language | Lenguaje de consulta de logs |
+| Durable Functions | Step Functions | Workflows | Orquestación de workflows con estado |
+| Bicep | CloudFormation / CDK | Deployment Manager (o Terraform) | IaC nativo del proveedor |
+| AKS | EKS | GKE | Kubernetes gestionado |
+| — | RDS | Cloud SQL | Base relacional gestionada (Postgres/MySQL) |
+| — | Aurora | AlloyDB | Base relacional de alto rendimiento compatible con Postgres |
+| Event Hubs | MSK / Kinesis Data Streams | Pub/Sub | Log de eventos gestionado (Kafka-compatible solo Event Hubs/MSK) |
+| Azure AI Foundry | Amazon Bedrock | Vertex AI | Plataforma para usar/desplegar modelos de IA generativa (LLMs) |
+| Azure Machine Learning | SageMaker AI | Vertex AI (Training/Pipelines) | Plataforma de MLOps: entrenar, registrar y desplegar modelos propios |
+| Azure AI Search | OpenSearch Serverless / Bedrock Knowledge Bases | Vertex AI Vector Search / RAG Engine | Búsqueda vectorial/híbrida para RAG |
+| Azure AI Content Safety | Bedrock Guardrails | Model Armor | Guardrails: filtros de entrada/salida de un LLM |
+| Azure AI Foundry Agent Service | Bedrock Agents / AgentCore | Vertex AI Agent Engine | Servicio gestionado para correr agentes de IA |
+
+## Términos de Chaos Engineering / SRE (tema 14)
+
+| Término | Definición corta |
+|---|---|
+| Chaos Engineering | Disciplina de provocar fallas controladas en un sistema para descubrir debilidades antes de que las encuentre un usuario real |
+| Blast radius | Radio de impacto de un experimento de chaos engineering; se empieza acotado (un pod, un % chico de tráfico) y se expande gradualmente |
+| Steady-state hypothesis | Hipótesis de "comportamiento normal" del sistema, medida antes y después del experimento para saber si la falla tuvo impacto |
+| Litmus | Herramienta de chaos engineering nativa de Kubernetes (proyecto CNCF), basada en CRDs (`ChaosEngine`) |
+| Chaos Mesh | Herramienta de chaos engineering nativa de Kubernetes (proyecto CNCF), basada en CRDs (`PodChaos`, `NetworkChaos`) |
+| Chaos Monkey | Herramienta pionera de Netflix que termina instancias al azar en producción; origen histórico de la disciplina |
+| Gremlin | Plataforma comercial (SaaS) de chaos engineering, con certificación propia y controles de "halt" de emergencia |
+| OpenTelemetry | Estándar abierto de instrumentación (trazas, métricas, logs) neutral de vendor; puede exportar a Prometheus, Elastic u otros backends |
+| Elastic Stack (ELK) | Elasticsearch (búsqueda/almacenamiento) + Logstash/Beats (ingesta) + Kibana (visualización); logging centralizado |
+| AIOps | Aplicación de IA/ML a operaciones: detección de anomalías, correlación automática de alertas, reducción de alert fatigue |
+
+## Términos generales (no específicos de una nube)
+
+| Término | Definición corta |
+|---|---|
+| OIDC | OpenID Connect — protocolo de federación de identidad; permite que GitHub Actions se autentique sin secretos de larga duración |
+| IaC | Infrastructure as Code |
+| Terraform | Herramienta de IaC multi-cloud (HashiCorp); mantiene su propio state file |
+| KEDA | Kubernetes Event-Driven Autoscaling — escalado basado en eventos externos (colas, HTTP), usado en ACA/AKS/EKS/GKE |
+| Orchestrator function | Función que coordina un workflow con estado; debe ser determinística en modelos tipo Durable Functions |
+| LLM | Large Language Model — modelo de lenguaje grande (Claude, GPT, Gemini, Llama) |
+| Token | Unidad en la que un LLM lee/escribe texto (aprox. ¾ de palabra); se cobra por token |
+| Context window | Cantidad máxima de tokens que el modelo puede "ver" en una llamada |
+| Embedding | Vector numérico que representa el significado de un texto; permite búsqueda por similitud |
+| RAG | Retrieval-Augmented Generation — buscar documentos relevantes y dárselos al LLM para responder |
+| Fine-tuning | Reentrenar parcialmente un modelo con datos propios |
+| Tool use / function calling | El LLM pide ejecutar una función tuya y usa el resultado |
+| Agente | LLM que elige herramientas en loop hasta cumplir un objetivo |
+| MCP | Model Context Protocol — estándar para exponer herramientas y datos a agentes de IA |
+| Evals | Tests automáticos de calidad para apps de IA (equivalente a tests unitarios) |
+| Prompt injection | Ataque que mete instrucciones maliciosas en el input del LLM |
+| vLLM | Motor open source para servir LLMs con alto rendimiento |
+| MLflow | Herramienta open source de MLOps: tracking de experimentos y model registry |
+| Istio | Service mesh: mTLS entre servicios, gestión de tráfico (canary) y observabilidad, sin tocar el código |
+| ArgoCD | Herramienta de GitOps: sincroniza el cluster de Kubernetes con lo que hay en Git |
+| GitOps | Git como fuente de verdad del estado deseado; un agente (ArgoCD, Flux) lo aplica |
+| Keycloak | Identity Provider open source (OIDC/SAML, SSO), self-hosteable |
+| OPA / Rego | Open Policy Agent: motor de policy as code; Rego es su lenguaje. Gatekeeper lo aplica en Kubernetes |
+| AlloyDB | Base de datos de GCP compatible con PostgreSQL, de alto rendimiento |
+| ESO | External Secrets Operator: sincroniza secretos del gestor de la nube a Secrets de Kubernetes |
+| Atlas (Ariga) | Migraciones de schema de base de datos como código (no confundir con MongoDB Atlas) |
+| Valkey | Cache key-value en memoria, fork open source de Redis |
+| Flipt | Plataforma open source de feature flags |
+| Redpanda | Plataforma de event streaming compatible con la API de Kafka, sin JVM ni ZooKeeper |
+| Temporal | Motor de workflows durables (workflows + activities), agnóstico de nube |
+| HL7 v2 / FHIR | Estándares de intercambio de datos de salud: HL7 v2 (mensajes legacy), FHIR (API REST + JSON) |
+| IDP (Internal Developer Platform) | Plataforma interna que da self-service a los equipos de producto |
+| Métricas DORA | Deployment frequency, lead time, change failure rate, time to restore |
+| Well-Architected Framework | Marco de 5 pilares (Reliability, Security, Cost, Operational Excellence, Performance) — versión propia en Azure, AWS y GCP |
+| GitOps | Patrón de CD donde un repo Git es la única fuente de verdad y un operador dentro del clúster aplica los cambios (pull), no el pipeline (push) |
+| ArgoCD | Controlador de GitOps para Kubernetes; sincroniza manifiestos de un repo Git hacia el clúster |
+| GitLab CI | Orquestador de CI/CD de GitLab, mismo rol que GitHub Actions |
+| Keycloak | IAM open-source y self-hosteable (OIDC/SAML); realms, clients, roles y groups |
+| Service mesh | Capa de red entre pods vía sidecar proxy (Envoy); da mTLS, traffic splitting y observabilidad sin tocar el código de la app |
+| Istio | Implementación más conocida de service mesh para Kubernetes |
+| OPA (Open Policy Agent) | Motor de policy-as-code (lenguaje Rego); en K8s se usa vía Gatekeeper como admission controller |
+| Rego | Lenguaje de políticas de Open Policy Agent |
+| Temporal | Motor de orquestación de workflows open-source/cloud-agnostic, mismo modelo que Durable Functions (Workflow + Activity) pero en código |
+| Kafka | Log de eventos distribuido (topics, partitions, offsets, consumer groups); estándar de facto de streaming |
+| Redpanda | Reescritura de Kafka en C++, API wire-compatible, sin JVM/ZooKeeper |
+| FHIR | Estándar moderno (HL7) de interoperabilidad de datos de salud, API REST con recursos JSON/XML |
+| HL7 | Familia de estándares de intercambio de datos clínicos; FHIR es su versión moderna |
+| kube-apiserver | Componente del control plane de Kubernetes; única puerta de entrada para leer/escribir el estado del clúster |
+| etcd | Base de datos clave-valor distribuida donde vive el estado completo de un clúster de Kubernetes |
+| kubelet | Agente que corre en cada nodo de Kubernetes; garantiza que los contenedores asignados a ese nodo estén corriendo |
+| kube-proxy | Componente de nodo que implementa las reglas de red de los Services (iptables/IPVS) |
+| CNI (Container Network Interface) | Estándar de plugin de red de Kubernetes (Calico, Cilium, Azure CNI, VPC CNI) |
+| CSI (Container Storage Interface) | Estándar de plugin de storage de Kubernetes (conecta con Azure Disk/EBS/Persistent Disk) |
+| CRI (Container Runtime Interface) | Estándar que permite a Kubernetes usar distintos runtimes de contenedor (containerd, CRI-O) |
+| kubeadm | Herramienta para levantar un clúster de Kubernetes self-managed (vos gestionás el control plane) |
+| Reconciliation loop | Patrón central de Kubernetes: comparar estado deseado (etcd) vs. estado real, y corregir la diferencia |
+| IDP (Internal Developer Platform) | Plataforma interna self-service que abstrae infraestructura/CI-CD/observabilidad para los equipos de producto |
+| Golden path / paved road | Camino recomendado y soportado por la plataforma para una tarea común (crear servicio, desplegar) |
+| Backstage | Proyecto CNCF open-source para exponer un catálogo de software/plataforma self-service |
+| Team Topologies | Marco de diseño organizacional: equipos stream-aligned, platform, enabling, complicated-subsystem |
+
+## Enlaces generales
+
+- Microsoft Learn (certificaciones Azure): https://learn.microsoft.com/certifications/
+- AWS Certification: https://aws.amazon.com/certification/
+- Google Cloud Certification: https://cloud.google.com/certification
+- Azure Architecture Center: https://learn.microsoft.com/azure/architecture/
+- AWS Architecture Center: https://aws.amazon.com/architecture/
+- Google Cloud Architecture Center: https://cloud.google.com/architecture

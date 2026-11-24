@@ -1,0 +1,1430 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stack de herramientas</title>
+<style>
+:root {
+  --azul:#1168bd; --oscuro:#0b2a4a; --gris:#5b6470; --fondo:#f3f6f9; --tarjeta:#fff; --borde:#d5dee8; --texto:#1b1b1b;
+  --b-bg:#dbe8fb; --b-bd:#2f6fd6; --b-tx:#123d80;
+  --g-bg:#dcf3e2; --g-bd:#2e9a52; --g-tx:#145c2b;
+  --y-bg:#fdf1c7; --y-bd:#c99a06; --y-tx:#6b5100;
+  --r-bg:#fbe0dd; --r-bd:#d0473a; --r-tx:#7d1f16;
+  --n-bg:#eef0f3; --n-bd:#b9c0c9; --n-tx:#59616b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --azul:#5aa2ec; --oscuro:#dbe8f6; --gris:#9aa4b0; --fondo:#11161c; --tarjeta:#1a2129; --borde:#2f3c4a; --texto:#e6e9ee;
+    --b-bg:#16294a; --b-bd:#5b93ef; --b-tx:#c3d8fb;
+    --g-bg:#14321f; --g-bd:#4cbb70; --g-tx:#bfe9cc;
+    --y-bg:#3a3010; --y-bd:#d9ad25; --y-tx:#f3e2a6;
+    --r-bg:#3d1a17; --r-bd:#e2685c; --r-tx:#f6c6c0;
+    --n-bg:#222a33; --n-bd:#4a5562; --n-tx:#a6afba;
+  }
+}
+:root[data-theme="dark"] {
+  --azul:#5aa2ec; --oscuro:#dbe8f6; --gris:#9aa4b0; --fondo:#11161c; --tarjeta:#1a2129; --borde:#2f3c4a; --texto:#e6e9ee;
+  --b-bg:#16294a; --b-bd:#5b93ef; --b-tx:#c3d8fb;
+  --g-bg:#14321f; --g-bd:#4cbb70; --g-tx:#bfe9cc;
+  --y-bg:#3a3010; --y-bd:#d9ad25; --y-tx:#f3e2a6;
+  --r-bg:#3d1a17; --r-bd:#e2685c; --r-tx:#f6c6c0;
+  --n-bg:#222a33; --n-bd:#4a5562; --n-tx:#a6afba;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--fondo); color:var(--texto); font-family:system-ui,Segoe UI,Roboto,sans-serif; }
+main { max-width:1200px; margin:0 auto; padding:24px 16px 48px; }
+h1 { color:var(--oscuro); margin:0 0 4px; font-size:1.8rem; }
+.sub { color:var(--gris); margin:0 0 12px; }
+.barra { position:sticky; top:0; background:var(--fondo); padding:10px 0; z-index:1; display:flex; flex-direction:column; gap:10px; }
+.fila { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+input { flex:1; min-width:200px; padding:10px 12px; font-size:1rem; border:1px solid var(--borde); border-radius:8px; background:var(--tarjeta); color:var(--texto); }
+.cuenta { color:var(--gris); font-size:.9rem; }
+.leyenda { display:flex; gap:8px; flex-wrap:wrap; }
+.leyenda button { font:inherit; font-size:.85rem; cursor:pointer; border-radius:999px; padding:5px 12px; border:1.5px solid; display:flex; gap:6px; align-items:center; }
+.leyenda button.apagado { opacity:.35; text-decoration:line-through; }
+.leyenda b { font-weight:700; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin-top:8px; }
+section { background:var(--tarjeta); border:1px solid var(--borde); border-top:4px solid var(--azul); border-radius:10px; padding:14px 16px; }
+section.oculta { display:none; }
+h2 { font-size:1.05rem; color:var(--oscuro); margin:0 0 6px; display:flex; justify-content:space-between; gap:8px; }
+h2 .n { color:var(--azul); margin-right:6px; }
+h2 .total { color:var(--gris); font-weight:400; font-size:.85rem; white-space:nowrap; }
+.barrita { display:flex; height:6px; border-radius:3px; overflow:hidden; margin-bottom:10px; background:var(--n-bg); }
+.barrita span { display:block; height:100%; }
+ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+li { border:1.5px solid; border-radius:999px; padding:4px 10px; font-size:.9rem; }
+li[title]:not([title=""]) { cursor:help; }
+li.oculta { display:none; }
+li.match { outline:2px solid var(--azul); outline-offset:1px; }
+.b { background:var(--b-bg); border-color:var(--b-bd); color:var(--b-tx); }
+.g { background:var(--g-bg); border-color:var(--g-bd); color:var(--g-tx); }
+.y { background:var(--y-bg); border-color:var(--y-bd); color:var(--y-tx); }
+.r { background:var(--r-bg); border-color:var(--r-bd); color:var(--r-tx); }
+.n { background:var(--n-bg); border-color:var(--n-bd); color:var(--n-tx); }
+.barrita .b { background:var(--b-bd); } .barrita .g { background:var(--g-bd); } .barrita .y { background:var(--y-bd); }
+.barrita .r { background:var(--r-bd); } .barrita .n { background:var(--n-bd); }
+.nota { color:var(--gris); font-size:.85rem; margin-top:24px; }
+</style>
+</head><body>
+<main>
+<h1>Stack de herramientas</h1>
+<p class="sub">Ordenadas en cada categoría de la que más conoces a la que menos. Pasa el mouse sobre una herramienta para ver la nota.</p>
+<div class="barra">
+  <div class="fila">
+    <input id="q" type="search" placeholder="Buscar herramienta (ej.: Trivy, Argo, Vault)…" autocomplete="off">
+    <span class="cuenta" id="cuenta"></span>
+  </div>
+  <div class="leyenda" id="leyenda"></div>
+</div>
+<div class="grid" id="grid"></div>
+<p class="nota">Fuentes: <code>examenes/registro/progreso.md</code>, tu experiencia laboral confirmada y los temas del plan donde aparece cada herramienta.</p>
+</main>
+<script>
+const DATOS = [
+[
+"CI/CD (Integración y Entrega Continuas)",
+[
+[
+"GitHub Actions",
+"n",
+""
+],
+[
+"Jenkins",
+"n",
+""
+],
+[
+"Azure DevOps (Azure Pipelines)",
+"n",
+""
+],
+[
+"GitLab CI",
+"n",
+""
+],
+[
+"CircleCI",
+"n",
+""
+],
+[
+"Bitbucket Pipelines",
+"n",
+""
+],
+[
+"TeamCity",
+"n",
+""
+],
+[
+"AWS CodePipeline / CodeBuild",
+"n",
+""
+],
+[
+"Google Cloud Build",
+"n",
+""
+],
+[
+"Tekton",
+"n",
+""
+]
+]
+],
+[
+"GitOps y despliegue",
+[
+[
+"Helm",
+"n",
+""
+],
+[
+"Argo CD",
+"n",
+""
+],
+[
+"Argo Rollouts",
+"n",
+""
+],
+[
+"Flagger",
+"n",
+""
+],
+[
+"Flux",
+"n",
+""
+],
+[
+"Kustomize",
+"n",
+""
+],
+[
+"LaunchDarkly",
+"n",
+""
+],
+[
+"Unleash",
+"n",
+""
+],
+[
+"Spinnaker",
+"n",
+""
+]
+]
+],
+[
+"Infraestructura como código (IaC)",
+[
+[
+"Terraform",
+"n",
+""
+],
+[
+"Terragrunt",
+"n",
+""
+],
+[
+"Ansible",
+"n",
+""
+],
+[
+"Crossplane",
+"n",
+""
+],
+[
+"OpenTofu",
+"n",
+""
+],
+[
+"Bicep",
+"n",
+""
+],
+[
+"ARM Templates",
+"n",
+""
+],
+[
+"AWS CloudFormation",
+"n",
+""
+],
+[
+"AWS CDK",
+"n",
+""
+],
+[
+"Pulumi",
+"n",
+""
+],
+[
+"Chef",
+"n",
+""
+],
+[
+"Puppet",
+"n",
+""
+],
+[
+"Packer",
+"n",
+""
+]
+]
+],
+[
+"Contenedores y orquestación",
+[
+[
+"Kubernetes",
+"n",
+""
+],
+[
+"Docker",
+"n",
+""
+],
+[
+"AWS ECS / Fargate",
+"n",
+""
+],
+[
+"EKS",
+"n",
+""
+],
+[
+"AKS",
+"n",
+""
+],
+[
+"GKE",
+"n",
+""
+],
+[
+"Istio",
+"n",
+""
+],
+[
+"containerd",
+"n",
+""
+],
+[
+"Azure Container Apps",
+"n",
+""
+],
+[
+"Google Cloud Run",
+"n",
+""
+],
+[
+"ECR",
+"n",
+""
+],
+[
+"KEDA",
+"n",
+""
+],
+[
+"Linkerd",
+"n",
+""
+],
+[
+"ACR",
+"n",
+""
+],
+[
+"Artifact Registry",
+"n",
+""
+],
+[
+"Podman",
+"n",
+""
+],
+[
+"Karpenter",
+"n",
+""
+],
+[
+"Harbor",
+"n",
+""
+]
+]
+],
+[
+"Nube",
+[
+[
+"AWS",
+"n",
+""
+],
+[
+"Azure",
+"n",
+""
+],
+[
+"AWS Lambda",
+"n",
+""
+],
+[
+"Azure Functions / Durable Functions",
+"n",
+""
+],
+[
+"GCP",
+"n",
+""
+],
+[
+"AWS Step Functions",
+"n",
+""
+],
+[
+"Google Cloud Functions",
+"n",
+""
+]
+]
+],
+[
+"Networking — AWS",
+[
+[
+"VPC",
+"n",
+""
+],
+[
+"Security Groups",
+"n",
+""
+],
+[
+"NACLs (Network ACLs)",
+"n",
+""
+],
+[
+"Route Tables",
+"n",
+""
+],
+[
+"Internet Gateway",
+"n",
+""
+],
+[
+"NAT Gateway",
+"n",
+""
+],
+[
+"AWS PrivateLink / VPC Endpoints",
+"n",
+""
+],
+[
+"AWS WAF",
+"n",
+""
+],
+[
+"AWS Direct Connect",
+"n",
+""
+],
+[
+"Amazon API Gateway",
+"n",
+""
+],
+[
+"ALB / NLB / GWLB (Elastic Load Balancing)",
+"n",
+""
+],
+[
+"AWS Network Firewall",
+"n",
+""
+],
+[
+"Transit Gateway",
+"n",
+""
+],
+[
+"VPC Peering",
+"n",
+""
+],
+[
+"Route 53",
+"n",
+""
+],
+[
+"Amazon CloudFront",
+"n",
+""
+],
+[
+"AWS Global Accelerator",
+"n",
+""
+],
+[
+"AWS Shield",
+"n",
+""
+],
+[
+"AWS Site-to-Site VPN",
+"n",
+""
+],
+[
+"AWS Client VPN",
+"n",
+""
+],
+[
+"VPC Flow Logs",
+"n",
+""
+],
+[
+"VPC Lattice",
+"n",
+""
+]
+]
+],
+[
+"Networking — Azure",
+[
+[
+"VNet (Virtual Network)",
+"n",
+""
+],
+[
+"NSG (Network Security Group)",
+"n",
+""
+],
+[
+"Private Endpoint",
+"n",
+""
+],
+[
+"NAT Gateway",
+"n",
+""
+],
+[
+"Azure Firewall",
+"n",
+""
+],
+[
+"VNet Peering",
+"n",
+""
+],
+[
+"UDR (User-Defined Routes)",
+"n",
+""
+],
+[
+"Private DNS Zones",
+"n",
+""
+],
+[
+"Network Watcher",
+"n",
+""
+],
+[
+"Azure Load Balancer",
+"n",
+""
+],
+[
+"Application Gateway (+ WAF)",
+"n",
+""
+],
+[
+"Azure Front Door",
+"n",
+""
+],
+[
+"Traffic Manager",
+"n",
+""
+],
+[
+"Virtual WAN (hub-and-spoke)",
+"n",
+""
+],
+[
+"VPN Gateway",
+"n",
+""
+],
+[
+"ExpressRoute",
+"n",
+""
+],
+[
+"Service Endpoints",
+"n",
+""
+],
+[
+"Private Link Service",
+"n",
+""
+],
+[
+"Azure Bastion",
+"n",
+""
+],
+[
+"Azure DDoS Protection",
+"n",
+""
+],
+[
+"API Management",
+"n",
+""
+],
+[
+"Azure DNS",
+"n",
+""
+]
+]
+],
+[
+"Networking — GCP",
+[
+[
+"Private Service Connect",
+"n",
+""
+],
+[
+"VPC (global)",
+"n",
+""
+],
+[
+"VPC Firewall Rules",
+"n",
+""
+],
+[
+"VPC Network Peering",
+"n",
+""
+],
+[
+"Cloud DNS",
+"n",
+""
+],
+[
+"Network Connectivity Center",
+"n",
+""
+],
+[
+"Cloud NAT",
+"n",
+""
+],
+[
+"Cloud Load Balancing",
+"n",
+""
+],
+[
+"Cloud Armor",
+"n",
+""
+],
+[
+"Cloud CDN",
+"n",
+""
+],
+[
+"Shared VPC",
+"n",
+""
+],
+[
+"Cloud Router",
+"n",
+""
+],
+[
+"Cloud VPN",
+"n",
+""
+],
+[
+"Cloud Interconnect",
+"n",
+""
+],
+[
+"API Gateway / Apigee",
+"n",
+""
+]
+]
+],
+[
+"Seguridad",
+[
+[
+"OPA / Gatekeeper",
+"n",
+""
+],
+[
+"Trivy",
+"n",
+""
+],
+[
+"Snyk",
+"n",
+""
+],
+[
+"Semgrep",
+"n",
+""
+],
+[
+"Dependabot",
+"n",
+""
+],
+[
+"Renovate",
+"n",
+""
+],
+[
+"Checkov",
+"n",
+""
+],
+[
+"tfsec",
+"n",
+""
+],
+[
+"Gitleaks",
+"n",
+""
+],
+[
+"GitHub Secret Scanning",
+"n",
+""
+],
+[
+"Cosign / Sigstore",
+"n",
+""
+],
+[
+"Kyverno",
+"n",
+""
+],
+[
+"Microsoft Defender for Cloud",
+"n",
+""
+],
+[
+"AWS GuardDuty",
+"n",
+""
+],
+[
+"SonarQube",
+"n",
+""
+],
+[
+"OWASP ZAP",
+"n",
+""
+],
+[
+"Burp Suite",
+"n",
+""
+],
+[
+"CodeQL",
+"n",
+""
+],
+[
+"Checkmarx",
+"n",
+""
+],
+[
+"Fortify",
+"n",
+""
+],
+[
+"OWASP Dependency-Check",
+"n",
+""
+],
+[
+"Mend",
+"n",
+""
+],
+[
+"Nuclei",
+"n",
+""
+],
+[
+"Grype",
+"n",
+""
+],
+[
+"Clair",
+"n",
+""
+],
+[
+"Docker Scout",
+"n",
+""
+],
+[
+"KICS",
+"n",
+""
+],
+[
+"Terrascan",
+"n",
+""
+],
+[
+"TruffleHog",
+"n",
+""
+],
+[
+"Syft (SBOM)",
+"n",
+""
+],
+[
+"SLSA",
+"n",
+""
+],
+[
+"Falco",
+"n",
+""
+],
+[
+"Wiz",
+"n",
+""
+],
+[
+"Prisma Cloud",
+"n",
+""
+]
+]
+],
+[
+"Identidad y secretos",
+[
+[
+"AWS IAM",
+"n",
+""
+],
+[
+"Azure Key Vault",
+"n",
+""
+],
+[
+"AWS Secrets Manager",
+"n",
+""
+],
+[
+"Keycloak",
+"n",
+""
+],
+[
+"Microsoft Entra ID (Azure AD)",
+"n",
+""
+],
+[
+"GCP Secret Manager",
+"n",
+""
+],
+[
+"HashiCorp Vault",
+"n",
+""
+],
+[
+"External Secrets Operator",
+"n",
+""
+],
+[
+"Okta",
+"n",
+""
+],
+[
+"Auth0",
+"n",
+""
+],
+[
+"Sealed Secrets",
+"n",
+""
+]
+]
+],
+[
+"Carga y performance",
+[
+[
+"k6",
+"n",
+""
+],
+[
+"JMeter",
+"n",
+""
+],
+[
+"Gatling",
+"n",
+""
+],
+[
+"Locust",
+"n",
+""
+],
+[
+"Artillery",
+"n",
+""
+],
+[
+"Vegeta",
+"n",
+""
+],
+[
+"wrk",
+"n",
+""
+],
+[
+"hey",
+"n",
+""
+],
+[
+"Azure Load Testing",
+"n",
+""
+],
+[
+"Distributed Load Testing on AWS",
+"n",
+""
+]
+]
+],
+[
+"Observabilidad",
+[
+[
+"AWS CloudWatch / X-Ray",
+"n",
+""
+],
+[
+"OpenTelemetry",
+"n",
+""
+],
+[
+"Datadog",
+"n",
+""
+],
+[
+"Grafana",
+"n",
+""
+],
+[
+"ELK / Elastic Stack",
+"n",
+""
+],
+[
+"Prometheus",
+"n",
+""
+],
+[
+"Loki",
+"n",
+""
+],
+[
+"Tempo",
+"n",
+""
+],
+[
+"Zipkin",
+"n",
+""
+],
+[
+"Splunk",
+"n",
+""
+],
+[
+"New Relic",
+"n",
+""
+],
+[
+"Dynatrace",
+"n",
+""
+],
+[
+"Azure Monitor / Application Insights / Log Analytics",
+"n",
+""
+],
+[
+"PagerDuty",
+"n",
+""
+],
+[
+"Opsgenie",
+"n",
+""
+],
+[
+"Thanos",
+"n",
+""
+],
+[
+"Mimir",
+"n",
+""
+],
+[
+"VictoriaMetrics",
+"n",
+""
+],
+[
+"Fluentd / Fluent Bit",
+"n",
+""
+],
+[
+"Jaeger",
+"n",
+""
+],
+[
+"Elastic APM",
+"n",
+""
+],
+[
+"Google Cloud Operations",
+"n",
+""
+],
+[
+"Alertmanager",
+"n",
+""
+]
+]
+],
+[
+"Chaos engineering",
+[
+[
+"Chaos Mesh",
+"n",
+""
+],
+[
+"LitmusChaos",
+"n",
+""
+],
+[
+"AWS Fault Injection Service",
+"n",
+""
+],
+[
+"Azure Chaos Studio",
+"n",
+""
+]
+]
+],
+[
+"Datos y mensajería",
+[
+[
+"Kafka",
+"n",
+""
+],
+[
+"AWS SQS / SNS",
+"n",
+""
+],
+[
+"PostgreSQL",
+"n",
+""
+],
+[
+"Cosmos DB",
+"n",
+""
+],
+[
+"DynamoDB",
+"n",
+""
+],
+[
+"Redis",
+"n",
+""
+],
+[
+"MySQL",
+"n",
+""
+],
+[
+"RabbitMQ",
+"n",
+""
+],
+[
+"Azure Service Bus / Event Hubs",
+"n",
+""
+],
+[
+"Google Pub/Sub",
+"n",
+""
+],
+[
+"MongoDB",
+"n",
+""
+],
+[
+"Temporal",
+"n",
+""
+],
+[
+"Airflow",
+"n",
+""
+]
+]
+],
+[
+"Platform Engineering",
+[
+[
+"Backstage",
+"n",
+""
+],
+[
+"Crossplane",
+"n",
+""
+],
+[
+"Port",
+"n",
+""
+]
+]
+],
+[
+"IA / MLOps / LLMOps",
+[
+[
+"MCP (Model Context Protocol)",
+"n",
+""
+],
+[
+"KServe",
+"n",
+""
+],
+[
+"MLflow",
+"n",
+""
+],
+[
+"Kubeflow",
+"n",
+""
+],
+[
+"SageMaker",
+"n",
+""
+],
+[
+"Azure ML",
+"n",
+""
+],
+[
+"Vertex AI",
+"n",
+""
+],
+[
+"vLLM",
+"n",
+""
+],
+[
+"Ollama",
+"n",
+""
+],
+[
+"LangChain",
+"n",
+""
+],
+[
+"LlamaIndex",
+"n",
+""
+],
+[
+"pgvector",
+"n",
+""
+],
+[
+"Pinecone",
+"n",
+""
+],
+[
+"Qdrant",
+"n",
+""
+],
+[
+"Azure AI Search",
+"n",
+""
+],
+[
+"Langfuse",
+"n",
+""
+],
+[
+"LangSmith",
+"n",
+""
+],
+[
+"Promptfoo",
+"n",
+""
+]
+]
+],
+[
+"Lenguajes y scripting",
+[
+[
+"Python",
+"n",
+""
+],
+[
+"Go",
+"n",
+""
+],
+[
+"FastAPI",
+"n",
+""
+],
+[
+"Bash",
+"n",
+""
+],
+[
+"YAML",
+"n",
+""
+],
+[
+"HCL (HashiCorp Configuration Language)",
+"n",
+""
+],
+[
+"PowerShell",
+"n",
+""
+]
+]
+]
+];
+const NIVELES = { b:"⬜ Sin evaluar", g:"⬜ Sin evaluar", y:"⬜ Sin evaluar", r:"⬜ Sin evaluar", n:"⬜ No visto" };
+const ORDEN = "bgyrn";
+const activos = new Set(ORDEN);
+
+const grid = document.getElementById("grid");
+const cuenta = document.getElementById("cuenta");
+const leyenda = document.getElementById("leyenda");
+const conteo = Object.fromEntries([...ORDEN].map(k => [k, 0]));
+DATOS.forEach(([, hs]) => hs.forEach(([, k]) => conteo[k]++));
+const total = Object.values(conteo).reduce((a, b) => a + b, 0);
+
+for (const k of ORDEN) {
+  if (!conteo[k]) continue;
+  const b = document.createElement("button");
+  b.className = k;
+  b.innerHTML = `<span></span><b>${conteo[k]}</b>`;
+  b.firstChild.textContent = NIVELES[k];
+  b.onclick = () => { activos.has(k) ? activos.delete(k) : activos.add(k); b.classList.toggle("apagado", !activos.has(k)); filtrar(); };
+  leyenda.append(b);
+}
+
+DATOS.forEach(([cat, hs], i) => {
+  const sec = document.createElement("section");
+  const h2 = document.createElement("h2");
+  h2.innerHTML = `<span><span class="n">${i + 1}.</span></span><span class="total">${hs.length}</span>`;
+  h2.firstChild.append(cat);
+  const barra = document.createElement("div");
+  barra.className = "barrita";
+  for (const k of ORDEN) {
+    const n = hs.filter(h => h[1] === k).length;
+    if (n) { const s = document.createElement("span"); s.className = k; s.style.width = (100 * n / hs.length) + "%"; barra.append(s); }
+  }
+  const ul = document.createElement("ul");
+  hs.forEach(([nombre, k, nota]) => {
+    const li = document.createElement("li");
+    li.className = k; li.dataset.nivel = k;
+    li.textContent = nombre;
+    li.title = NIVELES[k] + (nota ? " — " + nota : "");
+    ul.append(li);
+  });
+  sec.append(h2, barra, ul);
+  grid.append(sec);
+});
+
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+function filtrar() {
+  const q = norm(document.getElementById("q").value.trim());
+  let visibles = 0;
+  grid.querySelectorAll("section").forEach(sec => {
+    const catCoincide = q && norm(sec.querySelector("h2").textContent).includes(q);
+    let n = 0;
+    sec.querySelectorAll("li").forEach(li => {
+      const texto = !q || catCoincide || norm(li.textContent).includes(q);
+      const ok = texto && activos.has(li.dataset.nivel);
+      li.classList.toggle("oculta", !ok);
+      li.classList.toggle("match", !!q && !catCoincide && ok);
+      if (ok) n++;
+    });
+    sec.classList.toggle("oculta", n === 0);
+    visibles += n;
+  });
+  cuenta.textContent = visibles === total ? `${total} herramientas · ${DATOS.length} categorías` : `${visibles} de ${total} herramientas`;
+}
+document.getElementById("q").addEventListener("input", filtrar);
+filtrar();
+</script>
+</body></html>

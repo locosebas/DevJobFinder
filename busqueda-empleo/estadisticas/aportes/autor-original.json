@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "alias": "autor-original",
+  "perfil": {
+    "rol_objetivo": "DevOps / Plataforma + IA",
+    "anios_experiencia": "3-5",
+    "pais": "Colombia"
+  },
+  "periodo": {
+    "desde": "2026-08",
+    "hasta": "2026-11"
+  },
+  "totales": {
+    "vacantes_revisadas": 711,
+    "postuladas": 436,
+    "descartadas_antes_de_postular": 240,
+    "pendientes": 35,
+    "con_respuesta": 19,
+    "con_entrevista": 14,
+    "ofertas_aceptadas": 1
+  },
+  "por_portal": {
+    "LinkedIn": {
+      "postuladas": 237,
+      "con_respuesta": 7,
+      "con_entrevista": 4
+    },
+    "Workable": {
+      "postuladas": 39,
+      "con_respuesta": 1,
+      "con_entrevista": 1
+    },
+    "Computrabajo": {
+      "postuladas": 37,
+      "con_respuesta": 2,
+      "con_entrevista": 1
+    },
+    "GetOnBoard": {
+      "postuladas": 31,
+      "con_respuesta": 1,
+      "con_entrevista": 1
+    },
+    "Ashby": {
+      "postuladas": 23,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    },
+    "Himalayas": {
+      "postuladas": 23,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    },
+    "elempleo": {
+      "postuladas": 19,
+      "con_respuesta": 2,
+      "con_entrevista": 1
+    },
+    "Otro": {
+      "postuladas": 4,
+      "con_respuesta": 1,
+      "con_entrevista": 1
+    },
+    "Greenhouse": {
+      "postuladas": 4,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    },
+    "Lever": {
+      "postuladas": 4,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    },
+    "Torre": {
+      "postuladas": 4,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    }
+  },
+  "por_familia_de_rol": {
+    "IA / ML / LLM": {
+      "postuladas": 130,
+      "con_respuesta": 4,
+      "con_entrevista": 3
+    },
+    "DevOps": {
+      "postuladas": 88,
+      "con_respuesta": 2,
+      "con_entrevista": 1
+    },
+    "Cloud / Infraestructura": {
+      "postuladas": 66,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    },
+    "Software / Backend": {
+      "postuladas": 41,
+      "con_respuesta": 2,
+      "con_entrevista": 2
+    },
+    "SRE / Confiabilidad": {
+      "postuladas": 39,
+      "con_respuesta": 4,
+      "con_entrevista": 3
+    },
+    "Plataforma": {
+      "postuladas": 36,
+      "con_respuesta": 3,
+      "con_entrevista": 2
+    },
+    "Seguridad / DevSecOps": {
+      "postuladas": 22,
+      "con_respuesta": 4,
+      "con_entrevista": 3
+    },
+    "Otro": {
+      "postuladas": 14,
+      "con_respuesta": 0,
+      "con_entrevista": 0
+    }
+  },
+  "por_seniority": {
+    "Sin especificar": 465,
+    "Senior / Semi senior": 176,
+    "Líder": 36,
+    "Staff / Principal / Arquitecto": 34
+  },
+  "por_modalidad": {
+    "Remoto": 402,
+    "No publicada": 144,
+    "Híbrido": 123,
+    "Freelance": 29,
+    "Presencial": 13
+  },
+  "por_region": {
+    "País propio": 446,
+    "Sin especificar": 128,
+    "LATAM": 68,
+    "Mundial": 46,
+    "Otro país": 23
+  },
+  "salario_publicado_usd_mes": {
+    "No publicado": 623,
+    "Proyecto a precio fijo": 20,
+    "USD 3.000–5.000": 18,
+    "USD 2.000–3.000": 18,
+    "USD 1.000–2.000": 13,
+    "≥ USD 8.000": 12,
+    "USD 5.000–8.000": 5,
+    "Otro": 2
+  },
+  "por_encaje": {
+    "≥ 65 (alto)": 289,
+    "Sin calcular": 221,
+    "40–64 (medio)": 194,
+    "< 40 (bajo)": 7
+  },
+  "por_mes": {
+    "2026-08": 4,
+    "2026-09": 85,
+    "2026-10": 400,
+    "2026-11": 217,
+    "Otro": 5
+  },
+  "tecnologias_detectadas": {
+    "Python": 237,
+    "AWS": 209,
+    "Kubernetes": 203,
+    "Terraform": 188,
+    "Azure": 171,
+    "CI/CD": 163,
+    "LLM / IA": 160,
+    "Docker": 142,
+    "Observabilidad": 125,
+    "GCP": 98,
+    "Automatización": 86,
+    "GitHub Actions": 59,
+    "ArgoCD / GitOps": 55,
+    "Linux": 54,
+    "Agentes de IA": 51,
+    "Incidentes / postmortems": 47,
+    "Monitoreo y alertas": 44,
+    "SRE / On-call": 43,
+    "Integraciones / APIs": 43,
+    "Go": 42,
+    "MCP": 41,
+    "IaC": 40,
+    "Prometheus / Grafana": 39,
+    "Bash": 38,
+    "Jenkins": 38,
+    "Edge / IoT": 34,
+    "Datadog": 30,
+    "Helm": 25,
+    "IAM": 23,
+    "GitLab CI": 23,
+    "RAG": 22,
+    "Bases de datos": 17,
+    "Kafka / mensajería": 14,
+    "Redes": 10,
+    "Seguridad": 3
+  }
+}

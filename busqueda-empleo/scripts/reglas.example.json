@@ -1,0 +1,6 @@
+[
+  {"_nota": "Copia como reglas.json en tu carpeta LOCAL. Cada regla: 'si' es una regex sobre la pregunta en minúsculas; 'texto' es la respuesta abierta; 'opcion' la lista de opciones aceptables; 'bloquea': true deja la vacante para que la revises tú.", "si": "^$"},
+  {"si": "a[nñ]os de experiencia", "opcion": ["3-5 años", "Más de 5 años"], "texto": "[X] años"},
+  {"si": "nivel de ingl[eé]s", "opcion": ["Avanzado", "C1"]},
+  {"si": "tratamiento de datos|t[eé]rminos y condiciones", "bloquea": true}
+]

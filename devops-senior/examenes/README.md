@@ -1,0 +1,49 @@
+# Exámenes de autoevaluación
+
+Mecanismo simple para medir conocimiento por tema y detectar puntos débiles.
+No hay una app ni un script — el examen lo genero yo (Claude) al pedirlo, en
+la conversación.
+
+## Cómo pedir un examen
+
+Ejemplos de pedidos válidos:
+
+- *"Dame un examen de Bicep nivel intermedio, 10 preguntas"*
+- *"Dame un examen de Azure Networking nivel senior, mezclá teoría y escenarios"*
+- *"Simulá una entrevista técnica de 30 minutos sobre Kubernetes troubleshooting"*
+- *"Dame un examen de práctica estilo AZ-400"*
+- *"Mezclá preguntas de los temas 04, 05 y 06"* (examen combinado, para
+  fases avanzadas del roadmap)
+- *"Dame el diagnóstico general de IA"* (panorama de los temas 14-20)
+- *"Dame un examen de RAG nivel intermedio"* o *"...de MLOps nivel senior"*
+- *"Simulá una entrevista mixta DevOps + IA: diseñar la plataforma para un
+  RAG en producción"*
+
+Podés pedir formato:
+- **Opción múltiple** (rápido, bueno para repaso)
+- **Pregunta abierta** (mejor para medir profundidad real — te fuerza a
+  explicar, no reconocer)
+- **Escenario/troubleshooting** (mejor para simular entrevista senior)
+
+## Qué hago yo al tomarte el examen
+
+1. Genero las preguntas del tema/nivel pedido.
+2. Las respondés en el chat.
+3. Corrijo, explico lo que falló, y te doy el % de aciertos.
+4. Registro el resultado en `registro/` (ver formato abajo) — o lo hago si
+   me pedís explícitamente que lo guarde.
+
+## Formato de registro
+
+Cada resultado se guarda como una fila en `registro/resultados.md` (se crea
+la primera vez que rindas un examen). Columnas: fecha, tema, nivel, formato,
+% de aciertos, puntos débiles detectados.
+
+Esto permite, con el tiempo, ver qué temas necesitan repaso antes de rendir
+la certificación real o ir a la entrevista.
+
+## Temas de dominio (13 [EMPRESA_2] y 22 Salud) van aparte
+
+Los **exámenes o diagnósticos generales** (los que mezclan varios temas, tipo
+panorama) **no incluyen el tema 22 (salud: HL7/FHIR)**: es conocimiento de dominio,
+solo se evalúa si lo pedís (*"Dame un examen de HL7/FHIR"*).

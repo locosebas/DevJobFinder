@@ -1,0 +1,139 @@
+# Plan de aprendizaje — Camino a Senior DevOps + IA Engineer
+
+Carpeta de estudio personal de [TU_NOMBRE] para llegar a ser experto en
+**DevOps / Platform Engineering multi-cloud** (Azure, AWS y GCP) **y en IA**
+(desarrollo de aplicaciones con IA, RAG, agentes, MLOps/LLMOps y serving de
+modelos), preparar certificaciones y medir avance con exámenes de
+autoevaluación. Ops e IA van en **un solo roadmap**
+(`00-diagnostico/roadmap.md`), con fases que combinan las dos partes.
+
+Origen: mensaje de una reclutadora (empresa de selección) sobre una vacante de
+**Azure Platform Engineer** (contractor, remoto, largo plazo) — sigue siendo
+una referencia concreta para el diagnóstico de brechas. Pero el alcance del
+repo **no es solo Azure**: ya tenés experiencia real en AWS y GCP ([EMPRESA_2])
+y ofertas en cualquiera de las tres nubes son válidas. Por eso cada tema de
+`temas/` está organizado por **concepto** (no por nube) e incluye la
+equivalencia en Azure, AWS y GCP.
+
+Segunda vacante de referencia agregada: **Chaos & Resilience Engineer**
+(Davivienda, Bogotá) — ver
+`00-diagnostico/gap-analysis.md` y el tema nuevo
+`temas/30-chaos-engineering-sre/`. Cada vacante nueva que se agregue suma
+como caso de referencia adicional (su propio `gap-analysis-<empresa>.md`),
+no reemplaza a las anteriores.
+
+## Estructura
+
+```
+devops-senior/
+├── 00-diagnostico/        # dónde estás hoy vs. dónde necesitas estar
+│   ├── gap-analysis.md                         # vacante Azure Platform Engineer (la reclutadora)
+│   └── roadmap.md
+├── temas/                 # una carpeta por tema (concepto), con equivalencias
+│   │                       # Azure / AWS / GCP + teoría + labs + lecturas
+│   ├── 01-iac-multicloud/                      # Bicep, CloudFormation/CDK, Terraform
+│   ├── 02-contenedores-serverless/             # Container Apps, Fargate, Cloud Run
+│   ├── 03-cicd-multicloud/                     # GitHub Actions + OIDC a las 3 nubes
+│   ├── 04-identidad-iam/                       # Entra ID/RBAC, AWS IAM, GCP IAM
+│   ├── 05-networking-multicloud/               # VNet, VPC (AWS), VPC (GCP)
+│   ├── 06-datos-secretos/                      # Key Vault/Cosmos DB, Secrets Manager/DynamoDB, Secret Manager/Firestore
+│   ├── 07-observabilidad-multicloud/           # Azure Monitor, CloudWatch, Cloud Logging/Monitoring
+│   ├── 08-python-fastapi-docker/               # cloud-agnóstico
+│   ├── 09-orquestacion-serverless/             # Durable Functions, Step Functions, Workflows
+│   ├── 10-kubernetes-avanzado/                 # K8s en general + AKS/EKS/GKE
+│   ├── 11-seguridad-devsecops/                 # Defender for Cloud, Security Hub, Security Command Center
+│   ├── 12-arquitectura-costos-multicloud/      # los 3 Well-Architected/Architecture Frameworks
+│   │   # ── Bloque IA ──
+│   ├── 14-fundamentos-ia-llm/                  # ML, LLMs, tokens, embeddings (Foundry, Bedrock, Vertex AI)
+│   ├── 15-desarrollo-apps-llm/                 # APIs de LLMs, structured output, tool use, streaming
+│   ├── 16-rag-bases-vectoriales/               # AI Search, Bedrock Knowledge Bases, Vertex AI Vector Search, pgvector
+│   ├── 17-agentes-ia/                          # agentes, MCP, Foundry Agent Service, Bedrock AgentCore, ADK
+│   ├── 18-mlops-llmops/                        # Azure ML, SageMaker, Vertex AI Pipelines, MLflow, evals
+│   ├── 19-serving-modelos-gpu/                 # vLLM, KServe, GPUs en AKS/EKS/GKE
+│   ├── 20-seguridad-gobernanza-ia/             # prompt injection, Content Safety, Bedrock Guardrails, Model Armor
+│   │   # ── Herramientas de ofertas startup ──
+│   ├── 21-event-streaming-workflows/           # Redpanda/Kafka, Temporal (Event Hubs, MSK, Pub/Sub)
+│   ├── 22-datos-salud-hl7-fhir/                # dominio salud: HL7/FHIR, Medplum, HAPI FHIR, OIE
+│   ├── 23-platform-engineering/                # IDP, golden paths, Backstage, multi-tenancy, DORA
+│   ├── 24-gitlab-admin-service-accounts/       # GitLab self-managed, tokens, migración a Service Accounts (entrevista)
+│   │   # ── Temas sueltos (25 y 26 se movieron a ../pruebas-tecnicas/) ──
+│   ├── 27-linux-distros-infraestructura/       # Linux, distribuciones, tuning por servicio (ruta NubeShop)
+│   ├── 28-respuesta-incidentes-l2-l3/          # on-call, triage, mitigación, post-mortem (L2/L3)
+│   ├── 29-entrevista-payu/                     # preguntas de la entrevista PayU (2026-09-22) + respuestas modelo
+│   └── 30-chaos-engineering-sre/               # Litmus, Chaos Mesh, Chaos Monkey, Gremlin (vacante Davivienda)
+├── ../pruebas-tecnicas/   # pruebas técnicas de procesos de selección, una carpeta por empresa
+├── proyectos/             # ideas de proyectos prácticos (beginner → advanced) mapeadas a los temas
+├── formulas-de-cero/      # recetas "¿cómo armarías X de cero?" para entrevistas
+│                           # (K8s, red interna, Terraform empresa, CI/CD, observabilidad…)
+├── pendientes-de-estudio.md  # lo que piden las vacantes y quiero estudiar
+├── glosario-ia-ofertas.md    # siglas de IA que aparecen en las ofertas
+├── certificaciones/       # qué certificar, en qué orden, y por qué (DevOps + IA, Azure + AWS + GCP)
+│   # Istio, ArgoCD, Keycloak, OPA, AlloyDB, OpenTelemetry, ESO, Atlas, Valkey y Flipt
+│   # están dentro de los temas 03, 04, 06, 07, 10 y 11 (ver tabla en el roadmap)
+├── examenes/               # cómo pedir exámenes y dónde queda el registro de resultados
+│   ├── README.md
+│   └── registro/
+└── recursos/               # glosario y enlaces generales
+```
+
+## Cómo usar esto día a día
+
+1. **Elegí un tema** de `temas/` (seguí el orden sugerido en `00-diagnostico/roadmap.md`,
+   o el que te interese repasar). El **tablero de avance** al principio del
+   roadmap muestra en qué fase estás y qué temas (Ops e IA) te faltan.
+2. **Leé** el `README.md` de ese tema: tiene objetivos, subtemas y enlaces oficiales.
+3. **Pedime un examen** de ese tema (ver `examenes/README.md` para el formato).
+   Resolvelo, te corrijo, y anotamos el resultado en `examenes/registro/`.
+4. Revisamos juntos los puntos débiles y volvemos a ese tema o pasamos al siguiente.
+5. **Construí algo:** elegí un proyecto de `proyectos/README.md` ligado al tema
+   para tener evidencia práctica que mostrar en entrevistas.
+
+No hace falta pedirme permiso para arrancar: decime "dame un examen de Bicep nivel
+intermedio", "explicame RAG" o "explicame Private Endpoints" y seguimos desde ahí.
+
+> material interno de [EMPRESA_2] (preguntas de entrevista del equipo Scopes Govern).
+> Este repositorio es privado por decisión explícita del dueño. Si en algún momento
+> este repo pasa a ser público, esa carpeta debe eliminarse del historial de git antes.
+
+## Objetivo actualizado (2026-09-14): arquitecto de plataforma
+
+El objetivo ya no es solo cerrar brechas para una vacante puntual, sino poder
+**diseñar y construir una self-service developer platform completa desde
+cero (0→1)**, como la descrita en el posting de Vule Human Talent. Esto
+reordenó el roadmap (ver `00-diagnostico/roadmap.md`): Kubernetes se estudia
+primero por capas — arquitectura del clúster antes que troubleshooting (ver
+`temas/10-kubernetes-avanzado/README.md`, ahora un índice de 5 archivos) — y
+se agregó `temas/16-platform-engineering/` como tema de cierre que conecta
+todos los demás en un diagrama de arquitectura de referencia.
+
+## Temas 14-23: agregados después del roadmap "core" original
+
+Los temas 1-13 son el roadmap "core" original, pensado solo para DevOps (ver
+`00-diagnostico/roadmap.md`). A partir de ahí se agregaron dos tandas:
+
+**Bloque IA (temas 14-20)**: agregado el 2026-10-07 para fusionar DevOps + IA
+en un solo camino (ver "Objetivo actualizado" en el roadmap) — fundamentos de
+IA/ML/LLMs, desarrollo de apps con LLMs, RAG/bases vectoriales, agentes de
+IA/MCP, MLOps/LLMOps, serving de modelos con GPU, y seguridad/gobernanza de IA.
+
+**Herramientas de ofertas de startups (temas 21-23, antes numerados 14-16)**:
+agregadas a partir de dos postings de LinkedIn — uno de una startup de salud
+en USA (Vule Human Talent, Senior DevOps/Platform Engineer, GKE + Terraform +
+ArgoCD + Istio + GitLab CI + Keycloak + OPA + AlloyDB + OpenTelemetry, y como
+plus Redpanda/Temporal/HL7-FHIR/Medplum/HAPI, sept. 2026) y otro healthtech
+más reciente (2026-10-07, agregó ESO, Atlas, Valkey, Flipt). Herramientas de
+esos postings que ya estaban cubiertas por temas existentes se sumaron ahí en
+vez de crear un tema nuevo:
+
+| Herramienta del posting | Dónde quedó |
+|---|---|
+| Kubernetes, GKE, Istio | `10-kubernetes-avanzado` (ya cubierto) |
+| Terraform | `01-iac-multicloud` (ya cubierto) |
+| ArgoCD, GitLab CI, Flipt | `03-cicd-multicloud` |
+| Keycloak | `04-identidad-iam` |
+| OPA | `11-seguridad-devsecops` |
+| AlloyDB, ESO, Atlas, Valkey | `06-datos-secretos` |
+| OpenTelemetry | `07-observabilidad-multicloud` (ya cubierto) |
+| Temporal, Redpanda | `21-event-streaming-workflows` (tema nuevo, antes `14-streaming-eventos`) |
+| HL7/FHIR, Medplum, HAPI FHIR | `22-datos-salud-hl7-fhir` (tema nuevo, dominio, antes `15-interoperabilidad-salud`) |
+| Platform engineering (IDP, golden paths) | `23-platform-engineering` (antes `16-platform-engineering`) |

@@ -1,0 +1,262 @@
+# Certificaciones — qué rendir y en qué orden
+
+Recomendación basada en tu stack actual (Terraform, Azure, AWS, GCP, K8s), el
+stack pedido en la vacante de referencia (Azure-céntrico, un caso concreto entre
+varios posibles) y una investigación de demanda real de mercado (sept. 2026,
+fuentes en `../00-diagnostico/roadmap.md`). No te limites a Azure: tenés
+experiencia real en AWS y GCP, así que abajo hay una ruta por nube — elegí
+según hacia dónde se incline la oferta que tengas más cerca en cada momento.
+Verificá siempre el temario actualizado en el link oficial antes de
+inscribirte — los proveedores actualizan los exámenes con cierta frecuencia.
+
+> **Hallazgo de la investigación de mercado:** la combinación de mayor señal
+> combinada para roles DevOps/Platform en 2026 es **CKA + Terraform Associate
+> + un cert de DevOps del cloud del empleador (AZ-400 en tu caso)** — no
+> necesariamente AZ-400 solo. Terraform Associate es además "la certificación
+> de mejor relación costo/valor de todo el espacio DevOps" (~$70 USD) dado que
+> ya usás Terraform en producción.
+
+> **Actualización (2026-09-25):** el objetivo del plan pasó a "arquitecto de
+> plataforma" (ver `../00-diagnostico/roadmap.md`, 2026-09-14). Eso sube de
+> rango a las certificaciones **"Solutions Architect"** de cada nube — no
+> reemplazan a Terraform Associate/CKA/AZ-400 (siguen siendo la combinación de
+> mayor señal para DevOps puro), pero **se estudian en paralelo**, porque
+> validan exactamente lo que es tu meta ahora: diseñar arquitecturas
+> completas (red, cómputo, identidad, costos), no solo operarlas.
+
+## Ruta transversal (agnóstica de nube) — hacela primero, sirve para cualquier oferta
+
+### Terraform Associate (HashiCorp)
+Ya usás Terraform en producción ([EMPRESA_1], [EMPRESA_2]). Es la de mejor
+relación costo/valor (~$70 USD) y es la única certificación de esta lista que
+suma puntos para una entrevista en Azure, AWS **o** GCP por igual.
+- https://developer.hashicorp.com/certifications/infrastructure-automation
+
+### CKA — Certified Kubernetes Administrator
+Ya tenés Kubernetes productivo ([EMPRESA_2], sobre AWS/GCP). Es la
+certificación técnica más respetada del ecosistema DevOps y, como Kubernetes
+es igual en AKS/EKS/GKE a nivel API, también es agnóstica de nube.
+- https://www.cncf.io/training/certification/cka/
+
+## Ruta Azure
+
+### AZ-104: Microsoft Azure Administrator (base)
+Si nunca certificaste nada de Azure formalmente, es la base — cubre gestión
+de recursos, storage, compute, networking básico, identidad. Salteable si tu
+experiencia práctica ya alcanza.
+- https://learn.microsoft.com/certifications/azure-administrator/
+
+### AZ-400: Designing and Implementing Microsoft DevOps Solutions ⭐ (la más alineada a la vacante de referencia)
+Es LA certificación DevOps de Microsoft. Cubre CI/CD, IaC, seguridad en el
+pipeline, monitoreo — prácticamente un espejo de todo lo que pide esa
+vacante. Requiere (o recomienda) AZ-104 o AZ-204 como base.
+- https://learn.microsoft.com/certifications/devops-engineer/
+
+### AZ-305: Designing Microsoft Azure Infrastructure Solutions ⭐⭐ (Microsoft Certified: Azure Solutions Architect Expert)
+La certificación **"Architect"** de Azure, nivel Expert — diseño de
+arquitecturas completas: cómputo, redes (VNet/subnets/Private Endpoint, todo
+lo que ya viste en `temas/05`), identidad, datos, alta disponibilidad y
+costos. Es la que más se alinea a tu meta actual de "arquitecto de
+plataforma", más que AZ-400 (que es operación/DevOps, no diseño). Requiere
+AZ-104 como prerrequisito recomendado.
+- https://learn.microsoft.com/certifications/azure-solutions-architect/
+
+### AZ-500: Microsoft Azure Security Engineer — opcional, si el rol se inclina a seguridad
+Refuerza identidad/RBAC/Key Vault/Networking (temas 04, 05, 06, 11) y es un
+buen diferenciador para roles senior.
+- https://learn.microsoft.com/certifications/azure-security-engineer/
+
+## Ruta AWS
+
+### AWS Certified Solutions Architect – Associate (base) ⭐⭐
+Valida fundamentos de arquitectura en AWS (compute, storage, networking,
+IAM) de forma amplia — el equivalente AWS de AZ-305, pero a nivel Associate.
+Con tu experiencia real en AWS ([EMPRESA_2], [PROYECTO_1]) es una de las más
+alcanzables ya mismo.
+- https://aws.amazon.com/certification/certified-solutions-architect-associate/
+
+### AWS Certified Solutions Architect – Professional ⭐⭐ (el "AZ-305 de AWS", nivel Expert)
+Un escalón arriba de la Associate: arquitecturas multi-cuenta, migración,
+optimización de costos a gran escala — el nivel que de verdad valida
+"arquitecto", no solo "sabe usar los servicios". Requiere la Associate (o
+experiencia equivalente) como base.
+- https://aws.amazon.com/certification/certified-solutions-architect-professional/
+
+### AWS Certified DevOps Engineer – Professional ⭐ (equivalente a AZ-400)
+La certificación DevOps "expert-level" de AWS: CI/CD, IaC (CloudFormation/CDK),
+monitoreo, alta disponibilidad. Requiere experiencia real (no es de entrada) —
+tu experiencia en [PROYECTO_1]/[EMPRESA_2] con AWS ya te da buena base práctica.
+- https://aws.amazon.com/certification/certified-devops-engineer-professional/
+
+### AWS Certified Security – Specialty — opcional
+Equivalente a AZ-500. Útil si el rol se inclina a seguridad/compliance.
+- https://aws.amazon.com/certification/certified-security-specialty/
+
+## Ruta GCP
+
+### Google Associate Cloud Engineer (base)
+Equivalente a AZ-104/Solutions Architect Associate: gestión operativa general
+de GCP.
+- https://cloud.google.com/certification/cloud-engineer
+
+### Google Professional Cloud DevOps Engineer ⭐ (equivalente a AZ-400)
+Certificación específica de DevOps de GCP: SRE practices, CI/CD, monitoreo,
+gestión de incidentes. La más alineada si la oferta es GCP-céntrica.
+- https://cloud.google.com/certification/cloud-devops-engineer
+
+### Google Professional Cloud Architect ⭐⭐ (el "AZ-305 de GCP")
+Diseño de arquitecturas completas en GCP — antes marcada como "opcional",
+ahora en el mismo rango que AZ-305/AWS SA dado el objetivo de arquitecto de
+plataforma. Buen complemento si el rol pide también decisiones de
+arquitectura, no solo operación.
+- https://cloud.google.com/certification/cloud-architect
+
+## Claude Certified Architect (CCA-F) — Anthropic ⭐⭐⭐ PRIORIDAD INMEDIATA (2026-09-25)
+
+Certificación oficial de **Anthropic** (la empresa que hace Claude, la
+herramienta con la que armamos todo este plan) — no es de una nube, es
+específica de diseñar arquitecturas que usan IA agéntica. Se agrega con
+**prioridad inmediata**: apenas cerremos el bloque actual de **Terraform**
+(`00-diagnostico/roadmap.md`), este es el próximo tema a estudiar, antes de
+seguir con el resto de las fases del roadmap.
+
+- **Qué certifica**: Claude Certified Architect — Foundations (**CCA-F**),
+  para diseñadores de sistemas senior que construyen aplicaciones con Claude
+  a escala de producción/empresa. Hay un nivel superior, **Professional**,
+  dentro de la misma línea "Architect".
+- **Formato del examen**: proctoreado (vigilado), **60 preguntas**,
+  administrado por **Pearson VUE** — mismo modelo que las certificaciones de
+  nube (AWS/Azure/GCP) que ya tenés en este archivo.
+- **Temario** (con su peso en el examen):
+  - Arquitectura y Orquestación Agéntica — 27%
+  - Configuración y Workflows de Claude Code — 20%
+  - Diseño de Tools e Integración **MCP** (*Model Context Protocol*) — 18%
+  - Prompt Engineering y Structured Output — 20%
+  - Gestión de Contexto y Confiabilidad — 15%
+- **Precio**: gratis si tu organización es parte del **Claude Partner
+  Network**; **$99 USD** si no.
+- **Preparación**: cursos self-paced en **Anthropic Academy**.
+  - https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request
+  - https://www.pearsonvue.com/us/en/anthropic.html
+
+**Por qué entra en este plan de arquitecto de plataforma**: el temario
+(arquitectura agéntica, MCP, gestión de contexto) es literalmente diseño de
+sistemas — la misma habilidad que venís entrenando con Kubernetes/redes/
+Terraform, aplicada a sistemas que integran IA. Cada vez más ofertas de
+"Platform Architect" van a pedir esto como parte del rol, no como un extra
+separado.
+
+## Ruta IA / MLOps — parte del plan principal
+
+Cada vez más ofertas de DevOps/Platform piden desplegar y operar cargas de
+IA (APIs de modelos, RAG, GPUs) — es una extensión natural de lo que ya
+sabés (Container Apps/Fargate/Cloud Run para servir modelos, FastAPI para
+las APIs de inferencia). Como tu objetivo es ser experto en DevOps **y** en
+IA, esta ruta va intercalada con la de DevOps en el orden de abajo (temas
+14-20 del roadmap).
+
+### Nivel fundamentos (rápidas, para tener el vocabulario)
+- **Azure AI Fundamentals (AI-900)** — https://learn.microsoft.com/certifications/azure-ai-fundamentals/
+- **AWS Certified AI Practitioner** ⭐ **elegida (2026-10-04)**, por peso comercial — https://aws.amazon.com/certification/certified-ai-practitioner/
+- **Google Cloud Generative AI Leader** — https://cloud.google.com/certification/generative-ai-leader
+
+Nivel de fundamentos ya cubierto en el plan (ver `examenes/registro/`):
+entrenamiento/inferencia, pre-entrenamiento/fine-tuning, RAG/agentic RAG,
+embeddings, visión por computador, NLP, IA Responsable.
+
+### Nivel técnico ⭐ (el que suma de verdad para un perfil DevOps/MLOps)
+- **Azure AI Engineer Associate (AI-102)** — construir soluciones con Azure
+  AI Services/Azure OpenAI. https://learn.microsoft.com/certifications/azure-ai-engineer/
+- **AWS Certified Machine Learning Engineer – Associate** — la más orientada
+  a **MLOps** (pipelines, despliegue, monitoreo de modelos) de las tres.
+  https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/
+- **Google Professional Machine Learning Engineer** — la más exigente y
+  reconocida de las tres, cubre todo el ciclo de vida de ML en producción.
+  https://cloud.google.com/certification/machine-learning-engineer
+
+Si el objetivo es un rol tipo "MLOps Engineer" o "AI Platform Engineer" (variante
+cada vez más común del DevOps senior), la de mayor señal es la de **AWS
+Machine Learning Engineer – Associate** o **Google Professional Machine
+Learning Engineer**, según la nube del empleador — son las dos con más foco
+en productivizar modelos, no solo entrenarlos.
+
+## Certificaciones de herramientas CNCF — opcionales, para ofertas startup
+
+Si la oferta pide herramientas puntuales (tema 23 y las de la tabla del
+roadmap), estas certificaciones de la Linux Foundation / CNCF son cortas y
+las validan directamente. No reemplazan a las de arriba.
+
+- **ICA — Istio Certified Associate** — https://training.linuxfoundation.org/certification/istio-certified-associate-ica/
+- **CAPA — Certified Argo Project Associate** (ArgoCD) — https://training.linuxfoundation.org/certification/certified-argo-project-associate-capa/
+- **OTCA — OpenTelemetry Certified Associate** — https://training.linuxfoundation.org/certification/opentelemetry-certified-associate-otca/
+- **CKS — Certified Kubernetes Security Specialist** (incluye OPA Gatekeeper y seguridad de K8s) — después de la CKA
+
+## Orden sugerido dado tu perfil (DevOps + IA, ajustado con datos de mercado + meta de arquitecto)
+
+Una sola ruta que intercala DevOps e IA, alineada con las fases del roadmap.
+El **CCA-F** (arriba) corre en **paralelo**, independiente de esta ruta —
+no es de una nube y no compite por el mismo orden.
+
+```
+Fase 1 → Terraform Associate        ←── más rápida y barata, sirve para las 3 nubes
+         + AI Fundamentals de la nube que elijas (AI-900 / AWS AI Practitioner)  ←── opcional, vocabulario
+   ↓
+Fase 1-2 → CKA                       ←── ya tenés Kubernetes productivo, sirve para las 3 nubes
+   ↓
+Fase 2-3 → AI-102 (Azure AI Engineer) ←── desarrollo de apps de IA (temas 15, 16, 17, 20)
+   ↓
+   ┌─────────────────────────────┬─────────────────────────────────┐
+   │ Cert DevOps de tu próxima   │ Cert "Architect" de esa misma    │
+   │ oferta concreta:            │ nube (EN PARALELO, no después):  │
+   │ AZ-400 · AWS DevOps Eng.    │ AZ-305 · AWS Solutions Architect │
+   │ Professional · Cloud DevOps │ (Associate→Professional) ·       │
+   │ Engineer (GCP)              │ Google Professional Cloud Arch.  │
+   └─────────────────────────────┴─────────────────────────────────┘
+   ↓
+Fase 5 → Certificación de MLOps de la nube de tu próxima oferta:
+         AWS ML Engineer – Associate · Google Professional ML Engineer   ←── temas 18 y 19
+   ↓
+Opcional → seguridad de esa misma nube (AZ-500 / AWS Security Specialty)
+```
+
+Empezá siempre por las dos transversales (Terraform Associate + CKA) — no
+importa a qué nube apunte la próxima oferta, ya suman. Después viene AI-102,
+eligiendo la nube según la oferta concreta que tengas más cerca en ese
+momento (hoy, la de la reclutadora apunta a AZ-400, y por eso AI-102 de Azure encaja
+bien al lado). Recién ahí elegí, **de la misma nube**, tanto la certificación
+**DevOps** (operación) como la **Architect** (diseño) — no es una o la otra,
+son las dos caras de tu meta actual de "arquitecto de plataforma": diseñar
+(Architect) Y operar (DevOps) la misma arquitectura. La certificación de
+MLOps va al final porque necesita los temas de observabilidad, CI/CD y
+Kubernetes ya cerrados.
+
+## Cómo preparar cada certificación acá
+
+1. Recorré los temas de `../temas/` relevantes al examen — cada uno ya trae
+   la tabla de equivalencias Azure/AWS/GCP.
+2. Pedime exámenes de práctica con el formato de la certificación:
+   *"Dame un examen de práctica estilo AZ-400"* o *"...estilo AWS DevOps
+   Engineer Professional"* o *"...estilo AI-102"* o *"...estilo AWS Machine
+   Learning Engineer"*.
+3. Registrá resultados en `../examenes/registro/` para ver evolución antes de
+   pagar el examen real.
+
+## Ruta Chaos Engineering / SRE — agregada por la vacante Davivienda
+
+Ver `../00-diagnostico/gap-analysis.md` y
+`../temas/30-chaos-engineering-sre/`. A diferencia de las certificaciones de
+cloud, en chaos engineering hay una sola certificación con reconocimiento
+real en la industria:
+
+### Gremlin Enterprise Chaos Engineering Certification
+
+Certificación de Gremlin (uno de los referentes comerciales del área),
+compatible con LinkedIn. Incluye material de preparación y prueba gratis de
+la herramienta — buena forma de aprender la práctica y certificarla al
+mismo tiempo, sin depender de tener un cluster propio con Litmus/Chaos Mesh
+ya armado.
+
+No hay certificación equivalente para Litmus o Chaos Mesh (son proyectos
+open source de CNCF, sin programa formal de certificación) — para esos dos,
+la demostración es práctica (correr experimentos reales) más que un
+certificado.

@@ -1,0 +1,6 @@
+# Datos personales de la búsqueda de empleo: solo locales
+datos_privados.json
+reglas.json
+/perfil/perfil.privado.md
+/perfil/marcadores.json
+__pycache__/

@@ -1,0 +1,329 @@
+# Roadmap de estudio — DevOps + IA (un solo camino)
+
+Objetivo: ser **experto en DevOps/Platform multi-cloud y en IA** (desarrollo
+de aplicaciones con IA + operación de IA en producción, MLOps/LLMOps). No son
+dos planes separados: cada fase combina un bloque **Ops** y un bloque **IA**
+que se apoyan entre sí (por ejemplo, Kubernetes primero y después servir
+modelos con GPU sobre Kubernetes).
+
+Orden sugerido. Cada fase es aprox. 3-4 semanas de estudio part-time
+(mientras trabajás). Ajustalo a tu ritmo real — lo importante es no saltar
+el examen de autoevaluación al final de cada tema.
+
+## Actualización de objetivo (2026-09-14): de "Senior DevOps" a "Arquitecto de plataforma"
+
+El objetivo dejó de ser solo "cerrar brechas para calificar a una vacante" y
+pasó a ser **poder diseñar y construir una self-service developer platform
+completa desde cero (0→1)**, como la del posting de Vule Human Talent
+(Senior DevOps/Platform Engineer, startup de salud, GKE + Terraform + ArgoCD
++ Istio + GitLab CI + Keycloak + OPA + AlloyDB + OpenTelemetry, sept. 2026).
+
+Esto cambia el orden de estudio en dos puntos concretos:
+
+1. **Kubernetes se adelanta y se abre en capas.** Antes de repasar
+   troubleshooting (que ya estaba pendiente), hace falta la **arquitectura**
+   del clúster (control plane, nodos, CNI, CSI, cómo se levanta un clúster) —
+   sin eso, troubleshooting es memorizar recetas sueltas en vez de entender
+   qué componente falló. Ver `temas/10-kubernetes-avanzado/README.md`, que
+   ahora es un índice ordenado (arquitectura → scheduling/recursos →
+   networking/mesh → operators/managed-k8s → troubleshooting, al final).
+2. **Se agrega un tema de cierre: `temas/23-platform-engineering/`** (antes
+   numerado `16-platform-engineering`). Saber cada herramienta suelta no
+   alcanza para ser arquitecto — hace falta el marco que explica cómo se
+   combinan (Internal Developer Platform, golden paths, Team Topologies,
+   production readiness) y un diagrama de referencia que ubica cada tema del
+   plan dentro de la arquitectura completa del posting.
+
+## Metodología: de general a específico
+
+Objetivo final: llegar a una entrevista técnica (o certificación) y poder
+resolver la prueba, no solo "haber leído sobre el tema". Por eso cada nivel
+sigue el mismo patrón general → específico:
+
+1. **General (panorama):** examen diagnóstico amplio que toca todos los temas (Ops e IA) a
+   nivel conceptual, para medir dónde estás parado hoy en la práctica (no
+   solo lo que infiere el CV). Esto define qué temas se profundizan primero.
+2. **Específico (por tema):** dentro de cada tema, primero repaso el concepto
+   general (qué es, para qué sirve, cómo se relaciona con lo demás) y recién
+   después vamos a detalle técnico (sintaxis, configuración, troubleshooting).
+3. **Examen del tema:** mezcla teoría + escenario, nivel creciente
+   (básico → intermedio → senior) hasta llegar a ≥ 80%.
+4. **Repaso mixto/entrevista:** una vez cubiertos varios temas, exámenes que
+   combinan temas y simulan formato de entrevista técnica o prueba de
+   certificación (preguntas encadenadas, sin decirte de antemano el tema).
+
+## Preferencia pedagógica: repetición de términos
+
+Una de las falencias que identificaste vos mismo: se te olvidan los **términos
+y nombres de herramientas**, no los conceptos. Por eso, al enseñar/evaluar,
+Claude debe ser **redundante a propósito**: repetir el nombre exacto de cada
+término/herramienta varias veces en la misma explicación (en vez de decir
+"esto" o "dicho servicio", repetir "Managed Identity", "Managed Identity" de
+nuevo), en vez de evitar la repetición por estilo. Es una decisión deliberada
+de este plan, no un descuido de redacción — no "corregir" esto a un estilo
+más variado en el futuro.
+
+## Preferencia pedagógica: interacción de a poco (problemas de atención)
+
+El usuario también avisó que tiene problemas de atención. Consecuencia
+práctica: **nunca tirar una lista larga de preguntas juntas** (por ejemplo,
+un examen de 13 preguntas de una sola vez). Las sesiones de examen/enseñanza
+deben ser de ida y vuelta — **una pregunta por vez** (excepcionalmente dos si
+son muy cortas), esperar la respuesta, corregir/explicar esa respuesta
+puntual, y recién ahí pasar a la siguiente. Nada de monólogos largos ni de
+tandas de preguntas en batch. Esto aplica a exámenes, explicaciones de temas,
+y cualquier interacción de enseñanza en este plan.
+
+## Preferencia pedagógica: siglas siempre con su significado al lado (2026-09-16)
+
+El usuario pidió explícitamente que, cada vez que aparezca una sigla (VNet,
+NSG, ACA, FaaS, CNI, etc.), se escriba **al lado** su nombre completo (en
+inglés y, si ayuda, su traducción) — no asumir que ya la recuerda solo
+porque se explicó una vez antes en la sesión. Es la misma lógica que la
+preferencia de "repetición de términos" de arriba, pero aplicada
+específicamente a siglas: "**NSG (Network Security Group)**", nunca solo
+"NSG" a secas la primera vez que se la nombra en una explicación.
+
+Más preferencias pedagógicas (nombres, selección múltiple, lista numerada
+calificada) están documentadas en `/CLAUDE.md`, que aplica siempre que se
+trabaje en este repo.
+
+## Pista paralela: Claude Certified Architect (CCA-F)
+
+No es parte de la grilla Ops/IA de abajo — es una certificación de
+**Anthropic**, no de una nube, sobre arquitectura de sistemas con IA agéntica
+(MCP, Claude Code, gestión de contexto). Corre **en paralelo** a las fases
+numeradas, sin ocupar un número de fase propio.
+
+- **Qué certifica**: Claude Certified Architect — Foundations (**CCA-F**).
+  Examen proctoreado, 60 preguntas, Pearson VUE. Detalle completo (temario,
+  pesos, precio, links) en `certificaciones/README.md`.
+
+## Prioridad inmediata (8–12 oct. 2026): prueba técnica Davivienda — tema 25
+
+Proceso de selección real (Especialista Senior SRE, Davivienda / Grupo Bolívar), con entrega el **lunes
+12 de octubre de 2026**. Mientras dure, **pausa el orden de las fases** de abajo, igual que la pista
+del CCA-F. Todo el detalle está en `pruebas-tecnicas/davivienda/` (raíz del repo):
+
+- `roadmap-express.md`: mini roadmap por días con nivel actual y meta de cada ítem.
+- `banco-preguntas.md`: preguntas por ítem (de a una, con respuesta plegada).
+- `grafos-troubleshooting.md` *(opcional)*: teoría de grafos para RCA (Root Cause Analysis) con IA.
+
+| Día | Bloque | Temas | Estado |
+|---|---|---|---|
+| Jue 8 | A — SRE | SLI/SLO/SLA, Golden Signals, Error Budget, burn rate, Quality Gate, progressive delivery, DORA | ⬜ |
+| Vie 9 | B — OpenTelemetry | Collector por dentro, agente vs. gateway, head vs. tail sampling, `traceparent`, FinOps de telemetría, PII | ⬜ |
+| Sáb 10 | C — IA para operaciones | Semantic Conventions, service graph, AIOps, MCP aplicado a observabilidad, grafos (opcional) | ⬜ |
+| Sáb 10 | D — Incidentes | Incident Command, mitigación, post-mortem blameless, toil, chaos engineering | ⬜ |
+| Dom 11 | E — Temas aledaños | Idempotencia, backoff + jitter, RTO/RPO, percentiles, Ley de Little, seguridad, regulación | ⬜ |
+| Dom 11–Lun 12 | F — Entregable | C4, 10 diapositivas, ensayo de 20 min + simulacro de preguntas | ⬜ |
+
+**Qué deja al plan general:** cubre un hueco real del roadmap, **SRE como disciplina** (SLOs, Error
+Budgets, incidentes, toil), que no existía en ningún tema, y profundiza el tema 07 (Observabilidad) del
+lado de construir la telemetría, no solo consumirla. Al terminar, los ítems pasan a
+`examenes/registro/progreso.md` y el tema 07 se actualiza en el tablero.
+
+## Tablero de avance (mirá acá cómo vas)
+
+Estados: ⬜ sin empezar · 🟡 parcial/tocado, sin examen a fondo · ✅ completo
+(ver `examenes/registro/progreso.md` para el nivel exacto por sub-tema) · 🔁
+hueco puntual pendiente dentro de un tema ya mayormente cubierto. Se
+actualiza cada vez que avanza una sesión de estudio (ver
+`../examenes/registro/resultados.md` para el detalle).
+
+| Fase | Bloque | Tema | Estado |
+|---|---|---|---|
+| 0 | Ops | Diagnóstico general DevOps (temas 01-12) | ⬜ |
+| 0 | IA | Diagnóstico general IA (temas 14-20) | ⬜ |
+| 0 | Ops | Diagnóstico de herramientas startup (Istio, ArgoCD, Keycloak, OPA, ESO, Valkey, Redpanda, Temporal…) | ⬜ |
+| 1 | Ops | 01 — IaC multi-cloud | ⬜ |
+| 1 | Ops | 10 — Kubernetes avanzado | ⬜ |
+| 1 | Ops | 02 — Contenedores serverless | ⬜ |
+| 1 | IA | 14 — Fundamentos de IA, ML y LLMs | ⬜ |
+| 2 | Ops | 03 — CI/CD multi-cloud | ⬜ |
+| 2 | Ops | 24 — GitLab Admin / Platform Engineer: migración a Service Accounts (⚡ prioridad por entrevista) | ⬜ |
+| 2 | Ops | 08 — Python / FastAPI + Docker | ⬜ |
+| 2 | IA | 15 — Desarrollo de apps con LLMs | ⬜ |
+| 3 | Ops | 04 — Identidad e IAM | ⬜ |
+| 3 | Ops | 05 — Networking multi-cloud | ⬜ |
+| 3 | Ops | 11 — Seguridad / DevSecOps | ⬜ |
+| 3 | IA | 20 — Seguridad y gobernanza de IA | ⬜ |
+| 4 | Ops | 06 — Datos y secretos | ⬜ |
+| 4 | IA | 16 — RAG y bases vectoriales | ⬜ |
+| 4 | Ops | 09 — Orquestación serverless | ⬜ |
+| 4 | Ops | 21 — Event streaming y workflows durables (Redpanda, Temporal) | ⬜ |
+| 4 | IA | 17 — Agentes de IA y MCP | ⬜ |
+| 5 | Ops | 07 — Observabilidad multi-cloud | ⬜ |
+| 5 | IA | 18 — MLOps y LLMOps | ⬜ |
+| 5 | IA | 19 — Serving de modelos y GPUs | ⬜ |
+| 5 | Ops | 12 — Arquitectura y costos multi-cloud | ⬜ |
+| 5 | Ops | 23 — Platform engineering | ⬜ |
+| ⚡ | Ops | 25 — SRE y observabilidad (prueba Davivienda, prioridad inmediata) | ⬜ |
+| 6 | Dominio | 22 — Salud: HL7/FHIR (solo si apuntás a healthtech) | ⬜ |
+| 6 | — | Certificaciones + simulacros de entrevista (DevOps, IA y mixtos) | ⬜ |
+
+## Fase 0 — Diagnóstico general (arranca acá)
+
+Antes de la Fase 1: un examen general de panorama (1-2 preguntas por tema,
+nivel conceptual). Con el resultado ajustamos el orden real de estudio — las
+brechas del `gap-analysis.md` son una hipótesis basada en el CV, el
+diagnóstico general la confirma o la corrige con datos reales.
+
+- **Parte Ops (temas 01-12):** ⬜ pendiente.
+- **Parte IA (temas 14-20):** los fundamentos (tema 14) ya se cubrieron
+  enseñando directo durante la Fase 1, sin pasar primero por el examen
+  diagnóstico formal — si querés, pedime *"Dame el diagnóstico general de
+  IA"* para confirmar con un examen que no quedaron huecos.
+- **Herramientas de ofertas startup** (Istio, ArgoCD, Keycloak, OPA, AlloyDB,
+  OpenTelemetry, ESO, Atlas, Valkey, Flipt, Redpanda, Temporal, platform
+  engineering): ⬜ pendiente. Pedime *"Dame el diagnóstico de herramientas
+  startup"*. El tema 22 (salud) no entra.
+
+## Herramientas de ofertas startup (dónde está cada una)
+
+Agregadas a partir de una oferta de startup (healthtech) del 2026-10-07. No
+son un bloque aparte: cada herramienta vive en el tema donde se entiende.
+
+| Herramienta | Tema | Fase |
+|---|---|---|
+| **Istio** (service mesh) | 10 — Kubernetes avanzado | 1 |
+| **ArgoCD** (GitOps), **Flipt** (feature flags) | 03 — CI/CD | 2 |
+| **Keycloak** (Identity Provider) | 04 — Identidad | 3 |
+| **OPA** (policy as code) | 11 — DevSecOps | 3 |
+| **AlloyDB**, **ESO**, **Atlas**, **Valkey** | 06 — Datos y secretos | 4 |
+| **Redpanda**, **Temporal** | 21 — Event streaming y workflows (nuevo) | 4 |
+| **OpenTelemetry** (hands-on: Collector, OTLP) | 07 — Observabilidad | 5 |
+| Equipo de platform engineering | 23 — Platform engineering (nuevo) | 5 |
+| **HL7/FHIR**, **Medplum**, **HAPI FHIR**, **OIE** | 22 — Salud (nuevo, dominio) | 6 |
+
+**Cómo se encastra la IA:** cada tema de IA va en la fase donde ya viste la
+base Ops que necesita. Desarrollo con LLMs va junto con FastAPI (una API de IA
+es una API FastAPI que llama a un modelo); RAG va junto con datos (una base
+vectorial es otra base de datos); agentes van junto con orquestación (un
+agente es un orquestador donde decide el modelo); MLOps va junto con
+observabilidad y CI/CD; serving de modelos va después de Kubernetes y antes
+de costos (las GPUs son lo más caro de la factura).
+
+## Fase 1 — Infraestructura base + fundamentos de IA (semanas 1-4)
+
+Lo más pedido en las ofertas, y donde ya tenés más base (Terraform, Docker, K8s).
+En paralelo, el vocabulario de IA que vas a usar en todas las fases siguientes.
+
+- **Ops**
+  1. `temas/01-iac-multicloud`
+  2. `temas/10-kubernetes-avanzado`
+  3. `temas/02-contenedores-serverless`
+- **IA**
+  4. `temas/14-fundamentos-ia-llm`
+
+## Fase 2 — CI/CD + desarrollo de apps con IA (semanas 5-8)
+
+- **Ops**
+  5. `temas/03-cicd-multicloud`
+  5b. `temas/24-gitlab-admin-service-accounts` — ⚡ **prioridad por entrevista** (GitLab Administrator / Platform Engineer, Service Account Migration)
+  6. `temas/08-python-fastapi-docker`
+- **IA**
+  7. `temas/15-desarrollo-apps-llm`
+
+Al final de la Fase 2 deberías tener **una API FastAPI de IA desplegada con
+CI/CD** (GitHub Actions + OIDC) en Container Apps / Fargate / Cloud Run —
+pendiente, falta construirlo.
+
+## Fase 3 — Identidad, seguridad y networking (incluida la seguridad de IA) (semanas 9-12)
+
+- **Ops**
+  8. `temas/04-identidad-iam`
+  9. `temas/05-networking-multicloud`
+  10. `temas/11-seguridad-devsecops`
+- **IA**
+  11. `temas/20-seguridad-gobernanza-ia`
+
+Al final de la Fase 3 deberías poder explicar de memoria cómo una app llega a
+una base de datos **y a un modelo de IA** sin exponer secretos ni tráfico a
+internet público — **en cualquiera de las tres nubes**. La mitad Ops ya
+quedó demostrada sin ayuda (Managed Identity/IAM Role → Key Vault/Secrets
+Manager → Private Endpoint/PrivateLink); la mitad de IA (seguridad de
+modelos) todavía no se vio.
+
+## Fase 4 — Datos, orquestación, RAG y agentes (semanas 13-18)
+
+- **Ops**
+  12. `temas/06-datos-secretos`
+- **IA**
+  13. `temas/16-rag-bases-vectoriales`
+- **Ops**
+  14. `temas/09-orquestacion-serverless`
+  15. `temas/21-event-streaming-workflows`
+- **IA**
+  16. `temas/17-agentes-ia`
+
+## Fase 5 — Operación de IA en producción + nivel Senior (semanas 19-24)
+
+- **Ops**
+  17. `temas/07-observabilidad-multicloud`
+- **IA**
+  18. `temas/18-mlops-llmops`
+  19. `temas/19-serving-modelos-gpu`
+- **Ops**
+  20. `temas/12-arquitectura-costos-multicloud`
+  21. `temas/23-platform-engineering`
+
+## Fase 6 — Dominio salud + certificaciones
+
+- Repasar `temas/22-datos-salud-hl7-fhir` si la oferta es de salud / healthtech.
+- Rendir las certificaciones elegidas (ver `certificaciones/README.md` — ruta
+  única que intercala certificaciones DevOps y de IA). Metas confirmadas:
+  **AWS Certified AI Practitioner** + **CCA-F**.
+- Simulacros de entrevista técnica con Claude usando `examenes/` en modo mixto:
+  DevOps, IA, y **mixtos DevOps + IA** (por ejemplo, *"diseñá la plataforma
+  para servir un RAG a 10.000 usuarios en AWS"*), formato entrevista.
+
+## Proyecto integrador (atraviesa todas las fases)
+
+Para que todo quede junto y tengas algo para mostrar en entrevistas, los labs
+de cada fase construyen **una sola aplicación** que va creciendo. Todavía no
+se arrancó a construir — lo visto hasta ahora es conceptual/examinado, no
+código corriendo:
+
+1. Fase 1: infraestructura con Terraform/Bicep + cluster/contenedor base.
+2. Fase 2: API FastAPI que llama a un LLM, con CI/CD y OIDC.
+3. Fase 3: identidad gestionada, acceso privado al modelo, guardrails.
+4. Fase 4: RAG sobre documentos propios + un agente con herramientas (MCP).
+5. Fase 5: evals en el pipeline, observabilidad de tokens/costo/latencia, y
+   (opcional) un modelo abierto servido con vLLM en Kubernetes.
+
+## Cómo avanzar de fase
+
+No avances de fase hasta tener **≥ 80% en el examen de cada tema** de la fase
+anterior (ver `examenes/registro/`), tanto de los temas Ops como de los de IA.
+Si un tema queda débil, se repite antes de seguir — la idea es no acumular
+huecos. Actualizá el **tablero de avance** de arriba al cerrar cada tema.
+
+## Fuentes de la investigación de mercado (sept. 2026)
+
+Estas fuentes ya no determinan el **orden** de las fases (eso ahora lo define
+la arquitectura de la plataforma objetivo), pero siguen sirviendo para saber
+qué certificación/skill tiene más demanda real:
+
+- [Azure DevOps and Security in 2026: Career Path, Skills & Certs — CloudThat](https://www.cloudthat.com/resources/blog/azure-devops-and-security-roadmap-for-2026-skills-and-certifications)
+- [Senior DevOps Engineer Job Description: Skills, Salary, & More — iMocha](https://www.imocha.io/job-description/senior-devops-engineer)
+- [Job Opening - Senior Azure DevOps / Cloud Platform Engineer — Randstad USA](https://www.randstadusa.com/jobs/4/1343959/senior-azure-devops-cloud-platform-engineer_woburn/)
+- [Top 10 DevOps Certifications Engineers Choose in 2026 — KodeKloud](https://kodekloud.com/blog/top-10-devops-certifications-courses-engineers-are-choosing/)
+- [AZ-400 Certification (2026 Guide) — CertDemand](https://certdemand.com/certs/az-400)
+- [Platform Engineering Certifications 2026 — ExamCert](https://www.examcert.app/blog/platform-engineering-certifications-2026/)
+
+> Nota: son fuentes secundarias (blogs/agregadores), no un estudio estadístico
+> formal. Sirven de contexto de mercado — el `gap-analysis.md` (basado en tu
+> CV real) y el diagrama de plataforma del tema 23 son la referencia real
+> para saber qué tan profundo tenés que ir en cada tema.
+
+## Temas 27-30: temas sueltos traídos de otras ramas
+
+Agregados en ramas aparte y traídos a `main` el 2026-10-15 (antes algunos usaban el número 14 o 25, ya ocupados):
+
+- Davivienda (antes tema 25) y Dapta (antes tema 26) se movieron a `pruebas-tecnicas/` en la raíz del repo, una carpeta por empresa.
+- `temas/27-linux-distros-infraestructura` — Linux, distribuciones e infraestructura (ruta NubeShop).
+- `temas/28-respuesta-incidentes-l2-l3` — proceso de respuesta a incidentes (on-call L2/L3): clasificar, mitigar, diagnosticar, resolver, post-mortem.
+- `temas/29-entrevista-payu` — preguntas y respuestas modelo de la entrevista PayU.
+- `temas/30-chaos-engineering-sre` — chaos engineering (Litmus, Chaos Mesh, Chaos Monkey, Gremlin), a partir de la vacante Chaos & Resilience Engineer de Davivienda (`gap-analysis-davivienda-chaos-sre.md`). Asume base de Kubernetes (tema 10) y observabilidad (tema 07).
+
